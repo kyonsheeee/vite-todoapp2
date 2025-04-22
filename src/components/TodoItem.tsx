@@ -17,21 +17,25 @@ export const TodoItem = ({
   onDelete,
 }: TodoItemProps) => {
   return (
-    <>
-      <Space style={{ width: "100%", justifyContent: "space-between" }}>
-        <Space>
-          <Checkbox checked={completed} onChange={() => onToggle(id)} />
-          <Text
-            delete={completed}
-            style={{ textDecoration: completed ? "line-through" : "none" }}
-          >
-            {title}
-          </Text>
-        </Space>
-        <Button danger onClick={() => onDelete(id)}>
-          削除
-        </Button>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      <Space>
+        <Checkbox checked={completed} onChange={() => onToggle(id)} />
+        <Text
+          delete={completed}
+          style={{ textDecoration: completed ? "line-through" : "none" }}
+        >
+          {title}
+        </Text>
       </Space>
-    </>
+      <Button danger size="small" onClick={() => onDelete(id)}>
+        削除
+      </Button>
+    </div>
   );
 };

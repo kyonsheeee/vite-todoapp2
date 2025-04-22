@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { Layout, Typography, List, Card } from "antd";
+import { Layout, Typography, List, Card, Flex } from "antd";
 import { TodoItem } from "./components/TodoItem";
 import { TodoForm } from "./components/TodoForm";
 
@@ -39,46 +39,60 @@ function App() {
 
   return (
     <>
-      <Layout>
-        <Header
+      <Flex
+        justify="center"
+        align="start"
+        style={{ minHeight: "100vh", background: "#f5f5f5" }}
+      >
+        <Layout
           style={{
-            backgroundColor: "#1890ff",
-            textAlign: "center",
-            display: "flex",
-            alignItems: "center",
+            width: "100%",
+            maxWidth: "1000px",
+            borderRadius: "8px",
+            overflow: "hidden",
+            background: "#fff",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+            margin: "20px",
+            paddingBottom: "20px",
           }}
         >
-          <Title style={{ color: "#fff", margin: 0 }}>My TODO List</Title>
-        </Header>
+          <Header
+            style={{
+              background: "#1677ff",
+              padding: 20,
+            }}
+          >
+            <Title style={{ color: "#fff", margin: 0 }} level={2}>
+              My TODO List
+            </Title>
+          </Header>
 
-        <Content
-          style={{
-            padding: "20px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <TodoForm onAdd={addTodo} />
-          <List
-            style={{ marginTop: "20px", maxWidth: "600px", width: "100%" }}
-            bordered
-            dataSource={todos}
-            locale={{ emptyText: "TODO はありません" }}
-            renderItem={(todo) => (
-              <List.Item>
-                <Card style={{ width: "100%" }}>
-                  <TodoItem
-                    {...todo}
-                    onToggle={toggleTodo}
-                    onDelete={deleteTodo}
-                  />
-                </Card>
-              </List.Item>
-            )}
-          />
-        </Content>
-      </Layout>
+          <Content
+            style={{
+              padding: 24,
+            }}
+          >
+            <TodoForm onAdd={addTodo} />
+            <List
+              style={{ marginTop: "20px", width: "100%" }}
+              bordered
+              dataSource={todos}
+              locale={{ emptyText: "TODO はありません" }}
+              renderItem={(todo) => (
+                <List.Item style={{ padding: "12px 0" }}>
+                  <Card style={{ width: "100%", borderRadius: "12px" }}>
+                    <TodoItem
+                      {...todo}
+                      onToggle={toggleTodo}
+                      onDelete={deleteTodo}
+                    />
+                  </Card>
+                </List.Item>
+              )}
+            />
+          </Content>
+        </Layout>
+      </Flex>
     </>
   );
 }

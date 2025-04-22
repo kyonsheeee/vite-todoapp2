@@ -17,11 +17,12 @@ export const TodoForm = ({ onAdd }: TodoFormProps) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <Space style={{ width: "100%" }}>
+        <Space style={{ width: "100%", display: "flex" }} size="middle">
           <Input
             placeholder="新しい TODO を入力"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            style={{ flex: 1 }}
           />
           <Button type="primary" htmlType="submit">
             追加
